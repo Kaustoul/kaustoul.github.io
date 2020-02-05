@@ -177,8 +177,19 @@ function image(cell, turn) {
 }
 
 function won(turn) {
-  alert("WON");
-  document.getElementById('won').innerHTML = "VYHRAL SI ZMRDE " + "<p> <button id='but' onclick='startNewGame()'>Restart</button></p>";
+  if (turn == "X") {
+    document.getElementById('won').innerHTML = "HITLER WON THE WAR!!!" + "<p> <button id='but' onclick='startNewGame()'>Restart</button></p>";
+    setTimeout(function () {
+      alert("HITLER WON THE WAR!!!");
+    }, 10);
+  }
+  if (turn == "O") {
+    document.getElementById('won').innerHTML = "STALIN WON THE WAR!!!" + "<p> <button id='but' onclick='startNewGame()'>Restart</button></p>";
+    setTimeout(function () {
+      alert("STALIN WON THE WAR!!!");
+    }, 10);
+  }
+
   document.getElementById('won').setAttribute("style", "padding:" + 20);
   //document.getElementById('won').setAttribute("style", "max-height:" + N_SIZE * C_SIZE);
 }
