@@ -1,0 +1,38 @@
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-image: url("pictures/map.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.308);
+    border: 2px solid rgba(104, 104, 104, 0.199);
+    font-size: 0%;
+    color: #000000;
+    border-radius: 10px 10px 10px 10px;
+    max-height: 30px;
+    height: 30px;
+    min-height: 30px;
+    max-width: 30px;
+    width: 30px;
+    min-width: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#tictactoe {
+    overflow: hidden;
+    position: relative;
+
+}
+
+#won {
+    position: absolute;
+    font-size: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
