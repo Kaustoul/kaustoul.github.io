@@ -34,8 +34,8 @@ function init() {
       //cell.setAttribute("style", 'height' + C_SIZE);
       //cell.setAttribute("style", 'width' + C_SIZE);
       //cell.setAttribute('align', 'center');
-      //cell.setAttribute('valign', 'center');
       cell.classList.add('col' + j, 'row' + i);
+      //cell.setAttribute('valign', 'center');
       cell.classList.add("diagonal");
       cell.classList.add("diagonal1");
       cell.identifier = identifier;
@@ -56,6 +56,8 @@ function init() {
  * New game
  */
 function startNewGame() {
+  document.getElementById('won').innerHTML = "";
+  document.getElementById('won').setAttribute("style", "padding:" + 0);
   score = {
     "X": 0,
     "O": 0
@@ -176,8 +178,8 @@ function image(cell, turn) {
 
 function won(turn) {
   alert("WON");
-  document.getElementById('won').innerHTML = "VYHRAL SI ZMRDE";
-  //document.getElementById('won').setAttribute("style", "max-width:" + N_SIZE * C_SIZE);
+  document.getElementById('won').innerHTML = "VYHRAL SI ZMRDE " + "<p> <button id='but' onclick='startNewGame()'>Restart</button></p>";
+  document.getElementById('won').setAttribute("style", "padding:" + 20);
   //document.getElementById('won').setAttribute("style", "max-height:" + N_SIZE * C_SIZE);
 }
 
