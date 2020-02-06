@@ -1,18 +1,63 @@
+.parent {
+    display: grid;
+    grid-template-columns: 1.5fr 4fr 1.5fr;
+    grid-template-rows: 1fr 3.5fr .75fr;
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+}
+
+.heading {
+    grid-area: 1 / 1 / 2 / 4;
+    color: rgb(43, 43, 54);
+    background-color: rgb(223, 223, 255);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.heading h1 {
+    font-size: 130px;
+    text-align: center;
+    font-family: "USSR Army";
+    margin: 0;
+}
+
+.heading h2 {
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Biryani', sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+hr {
+    margin: 0;
+    width: 85%;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 5px;
+    background-color: rgb(43, 43, 54);
+    border-color: rgb(43, 43, 54);
+    border-radius: 5px;
+}
+
 table {
     border-collapse: collapse;
     table-layout: fixed;
-    background-image: url("pictures/map.jpg");
+    background-image: url("pictures/map.png");
     background-repeat: no-repeat;
     background-size: cover;
     margin: auto;
+    border-radius: 50px;
 }
 
 td {
-    background-color: rgba(255, 255, 255, 0.308);
-    border: 2px solid rgba(104, 104, 104, 0.199);
+    background-color: rgba(219, 219, 219, 0.171);
+    border: 2px solid rgba(104, 104, 104, 0.253);
     font-size: 0%;
     color: #000000;
-    border-radius: 10px 10px 10px 10px;
     max-height: 30px;
     height: 30px;
     min-height: 30px;
@@ -21,28 +66,79 @@ td {
     min-width: 30px;
     overflow: hidden;
     white-space: nowrap;
+    border-radius: 6px;
+}
+
+.mid {
+    grid-area: 2 / 2 / 3 / 3;
+    border-radius: 50px;
+    border-color: rgb(43, 43, 54);
+    border: 2px;
+    border-style: solid;
 }
 
 #tictactoe {
     overflow: visible;
     position: relative;
+}
 
+#tah {
+    border-radius: 4px;
 }
 
 #won {
     position: absolute;
     font-size: 50px;
     left: 50%;
+    right: 0%;
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(39, 39, 39, 0.849);
     padding: 15px;
     color: white;
+    overflow: visible;
+    text-align: center;
+    width: 970px;
+    min-width: 970px;
+    max-height: 150px;
 }
 
 #won p {
+    max-height: 15px;
+}
+
+#button {
     position: inherit;
-    font-size: 35px;
-    left: 44%;
-    top: 50%
+    font-size: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 40px;
+    background-color: khaki;
+}
+
+.nemecko {
+    background-color: rgb(43, 43, 54);
+    border-radius: 50px;
+    margin-left: 1em;
+    grid-area: 2 / 1 / 3 / 2;
+    position: relative;
+}
+
+.rusko {
+    background-color: rgb(43, 43, 54);
+    border-radius: 50px;
+    margin-right: 1em;
+    grid-area: 2 / 3 / 3 / 4;
+    position: relative;
+}
+
+#char {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin-bottom: 3px;
+}
+
+.bottom {
+    grid-area: 3 / 1 / 4 / 4;
 }

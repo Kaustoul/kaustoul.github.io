@@ -9,18 +9,45 @@
     <script src="piskvorky.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/png" href="pictures/svastika.png" />
+    <link href="https://fonts.googleapis.com/css?family=Biryani&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <div id="tictactoe">
-        <div id='won'></div>
-    </div>
-    <div align="left">
-        <span id='turn'>Player X</span>
-        <button onclick="startNewGame()">Restart</button>
-    </div>
-    <script src="piskvorky.js"></script>
+    <div class="parent">
+        <div class="heading">
+            <h1>
+                NAZI SKVORKY
+            </h1>
+            <hr>
+            <h2>
+                The <strong>most</strong> advanced World War II simulation yet
+            </h2>
+        </div>
 
+        <div class="nemecko">
+            <img src="pictures/hitler.png" id="char">
+        </div>
+
+        <div class="rusko">
+            <img src="pictures/stalin.png" id="char">
+        </div>
+        <div class="mid">
+            <div id="tictactoe">
+                <div id='won' style="width: 900px; min-width: 900px;"></div>
+            </div>
+        </div>
+        <div align="left">
+            <span id='turn'>Player X</span>
+            <button onclick="startNewGame()">Restart</button>
+        </div>
+        <script src="piskvorky.js"></script>
+
+        <div class="bottom">
+
+        </div>
+
+    </div>
 </body>
 
 </html>

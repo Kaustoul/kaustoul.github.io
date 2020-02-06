@@ -5,7 +5,7 @@
  *
  * @author: Vasanth Krishnamoorthy
  */
-var N_SIZE = 30,
+var N_SIZE = 35,
   M_SIZE = 25,
   EMPTY = "&nbsp;",
   boxes = [],
@@ -14,7 +14,7 @@ var N_SIZE = 30,
   moves,
   W_SIZE = 5,
   C_SIZE = 30,
-  svastika = "<image src='pictures/svastika.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + ">",
+  svastika = "<image src='pictures/svastika.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
   srp = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + ">";
 
 console.log(screen.width / 30);
@@ -46,8 +46,7 @@ function init() {
     }
   }
 
-  //document.getElementById('won').setAttribute("style", "width:" + N_SIZE * C_SIZE);
-  //document.getElementById('won').setAttribute("style", "height:" + N_SIZE * C_SIZE);
+
   document.getElementById("tictactoe").appendChild(board);
   startNewGame();
 }
@@ -81,6 +80,7 @@ function win(clicked) {
     let y = parseInt(memberOf[1].replace("row", " ")) + 1;
     let x = parseInt(memberOf[0].replace("col", " ")) + 1;
     var items = contains('#tictactoe ' + testClass, turn, clicked);
+    console.log(items);
     if (items.length == W_SIZE) {
       return true;
     }
@@ -178,18 +178,20 @@ function image(cell, turn) {
 
 function won(turn) {
   if (turn == "X") {
-    document.getElementById('won').innerHTML = "HITLER WON THE WAR!!!" + "<p> <button id='but' onclick='startNewGame()'>Restart</button></p>";
+    document.getElementById('won').innerHTML = "<p>HITLER WON THE WAR!!!<hr><button id='but' onclick='startNewGame()'>Restart</button></p>";
     setTimeout(function () {
       alert("HITLER WON THE WAR!!!");
     }, 10);
   }
   if (turn == "O") {
-    document.getElementById('won').innerHTML = "STALIN WON THE WAR!!!" + "<p> <button id='but' onclick='startNewGame()'>Restart</button></p>";
+    document.getElementById('won').innerHTML = "<p>STALIN WON THE WAR!!! <hr> <button id='but' onclick='startNewGame()'>Restart</button></p>";
     setTimeout(function () {
       alert("STALIN WON THE WAR!!!");
     }, 10);
   }
 
+  document.getElementById('won').setAttribute("style", "width:" + N_SIZE * C_SIZE);
+  document.getElementById('won').setAttribute("style", "min-width:" + N_SIZE * C_SIZE);
   document.getElementById('won').setAttribute("style", "padding:" + 20);
   //document.getElementById('won').setAttribute("style", "max-height:" + N_SIZE * C_SIZE);
 }
