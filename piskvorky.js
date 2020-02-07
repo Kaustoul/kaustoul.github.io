@@ -15,7 +15,10 @@ var N_SIZE = 35,
   W_SIZE = 5,
   C_SIZE = 30,
   svastika = "<image src='pictures/svastika.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
-  srp = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + ">";
+  srp = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + ">",
+  hitler = document.getElementById("hitler"),
+  stalin = document.getElementById("stalin");
+
 
 console.log(screen.width / 30);
 
@@ -62,7 +65,8 @@ function startNewGame() {
     "O": 0
   };
   moves = 0;
-  turn = "X";
+  turn = randomStart();
+  turnImageStart(turn);
   boxes.forEach(function (square) {
     square.innerHTML = EMPTY;
   });
@@ -148,6 +152,7 @@ function contains(selector, text, cell) {
  * Sets clicked square and also updates the turn.
  */
 function set() {
+  turnImage(turn);
   if (this.innerHTML !== EMPTY) {
     return;
   }
@@ -196,4 +201,36 @@ function won(turn) {
   //document.getElementById('won').setAttribute("style", "max-height:" + N_SIZE * C_SIZE);
 }
 
+function turnImage(turn) {
+  randomStart();
+  if (turn == "O") {
+    hitler.setAttribute("style", "-webkit-transform:scale(" + 1.2 + ") rotate(" + 3 + "deg);");
+    stalin.setAttribute("style", "-webkit-transform:scale(" + 1 + ") rotate(" + 0 + "deg);");
+  }
+
+  if (turn == "X") {
+    hitler.setAttribute("style", "-webkit-transform:scale(" + 1 + ") rotate(" + 0 + "deg);");
+    stalin.setAttribute("style", "-webkit-transform:scale(" + 1.2 + ") rotate(-" + 3 + "deg)");
+  }
+}
+
+function turnImageStart(turn) {
+  if (turn == "X") {
+    hitler.setAttribute("style", "-webkit-transform:scale(" + 1.2 + ");");
+    stalin.setAttribute("style", "-webkit-transform:scale(" + 1 + ");");
+  }
+
+  if (turn == "O") {
+    hitler.setAttribute("style", "-webkit-transform:scale(" + 1 + ");");
+    stalin.setAttribute("style", "-webkit-transform:scale(" + 1.2 + ");");
+  }
+}
+
+function randomStart() {
+  let i = Math.random();
+  if (i < 0.5)
+    return "X"
+  else
+    return "O"
+}
 init();
