@@ -75,6 +75,7 @@ td {
     border-color: rgb(43, 43, 54);
     border: 2px;
     border-style: solid;
+    position: relative;
 }
 
 #tictactoe {
@@ -87,33 +88,45 @@ td {
 }
 
 #won {
-    position: absolute;
+    position: relative;
     font-size: 50px;
-    left: 50%;
-    right: 0%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
     background-color: rgba(39, 39, 39, 0.849);
-    padding: 15px;
-    color: white;
     overflow: visible;
     text-align: center;
-    width: 970px;
-    min-width: 970px;
-    max-height: 150px;
+    width: 100%;
+    grid-area: 2 / 2 / 3 / 3;
+    vertical-align: middle;
+    color: white;
+    border: 1px;
+    animation: prompt 3s normal;
+    animation-iteration-count: 1;
+}
+
+.start {
+    animation: appear 3s normal;
+    animation-iteration-count: 1;
+}
+
+.restart {
+    animation: restart .5s normal;
+}
+
+.won {
+    animation: won 1.5s normal;
 }
 
 #won p {
-    max-height: 15px;
+    max-height: 7px;
 }
 
-#button {
-    position: inherit;
+#but {
+    position: relative;
     font-size: 20px;
     overflow: hidden;
     white-space: nowrap;
     max-height: 40px;
-    background-color: khaki;
+    animation: appearB 3s normal;
 }
 
 .nemecko {
@@ -143,7 +156,7 @@ td {
     bottom: 0;
     margin-bottom: 3px;
     -webkit-transition-duration: 0.5s;
-    transform-origin: bottom;
+    transform-origin: bottom left;
 }
 
 #stalin {
@@ -152,9 +165,87 @@ td {
     bottom: 0;
     margin-bottom: 3px;
     -webkit-transition-duration: 0.5s;
-    transform-origin: bottom;
+    transform-origin: bottom right;
 }
 
 .bottom {
     grid-area: 3 / 1 / 4 / 4;
+}
+
+@-webkit-keyframes prompt {
+    0% {
+        width: 0%;
+        height: .5em;
+        border-radius: 50px;
+    }
+
+    49.999% {
+        border-radius: 50px;
+    }
+
+    50% {
+        width: 100%;
+        height: .5em;
+        border-radius: 0px;
+    }
+
+    100% {
+        height: 222px;
+    }
+}
+
+@-webkit-keyframes appear {
+    0% {
+        color: rgba(255, 255, 255, 0);
+    }
+
+    90% {
+        color: rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        color: white;
+    }
+}
+
+@-webkit-keyframes appearB {
+    0% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes won {
+    0% {
+        width: 0%;
+        height: .5em;
+        border-radius: 50px;
+    }
+
+    49.999% {
+        border-radius: 50px;
+    }
+
+    50% {
+        width: 100%;
+        height: .5em;
+        border-radius: 0px;
+    }
+
+    100% {
+        height: 222px;
+    }
+}
+
+@-webkit-keyframes restart {
+    50% {
+        opacity: 0;
+    }
 }
