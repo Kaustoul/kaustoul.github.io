@@ -67,9 +67,14 @@ td {
     overflow: hidden;
     white-space: nowrap;
     border-radius: 6px;
+    position: relative;
 }
 
-.mid {
+.mid {}
+
+#tictactoe {
+    overflow: visible;
+    position: relative;
     grid-area: 2 / 2 / 3 / 3;
     border-radius: 50px;
     border-color: rgb(43, 43, 54);
@@ -78,19 +83,29 @@ td {
     position: relative;
 }
 
-#tictactoe {
-    overflow: visible;
-    position: relative;
-}
-
 #tah {
     border-radius: 4px;
+    position: absolute;
+    top: 6%;
 }
 
-#won {
+#red {
+    top: 6%;
+    border-radius: 4px;
+    position: absolute;
+    animation: red_ 1s normal;
+}
+
+/* #won {
     position: relative;
-    font-size: 50px;
+    grid-area: 2 / 2 / 3 / 3;
     margin: auto;
+    width: 100%;
+} */
+
+.box {
+    position: relative;
+    font-size: 40px;
     background-color: rgba(39, 39, 39, 0.849);
     overflow: visible;
     text-align: center;
@@ -99,25 +114,53 @@ td {
     vertical-align: middle;
     color: white;
     border: 1px;
-    animation: prompt 3s normal;
-    animation-iteration-count: 1;
+    margin: auto;
+    font-family: 'Biryani', sans-serif;
+
 }
 
-.start {
-    animation: appear 3s normal;
-    animation-iteration-count: 1;
+#gameStart {
+    animation: prompt 2s normal;
 }
 
-.restart {
-    animation: restart .5s normal;
+#gameStart p {
+    padding-top: 30px;
+    animation: appear 2s normal;
+    margin: 0;
 }
 
-.won {
-    animation: won 1.5s normal;
+#gameStart #but {
+    animation: appearB 2s normal;
 }
 
-#won p {
-    max-height: 7px;
+
+#gameEnd {
+    animation: prompt 1s normal;
+
+}
+
+#gameEnd p {
+    padding-top: 30px;
+    margin: 0;
+    animation: appear 1s normal;
+}
+
+#gameEnd #but {
+    animation: appearB 1s normal;
+}
+
+#gameRestart {
+    animation: promptReset 1.5s normal;
+}
+
+#gameRestart p {
+    padding-top: 30px;
+    margin: 0;
+    animation: appear 1.5s normal;
+}
+
+#gameRestart #but {
+    animation: appearB 1.5s normal;
 }
 
 #but {
@@ -126,7 +169,6 @@ td {
     overflow: hidden;
     white-space: nowrap;
     max-height: 40px;
-    animation: appearB 3s normal;
 }
 
 .nemecko {
@@ -172,6 +214,13 @@ td {
     grid-area: 3 / 1 / 4 / 4;
 }
 
+.prompt {
+    position: relative;
+    grid-area: 2 / 2 / 3 / 3;
+    margin: auto;
+    width: 100%;
+}
+
 @-webkit-keyframes prompt {
     0% {
         width: 0%;
@@ -190,7 +239,7 @@ td {
     }
 
     100% {
-        height: 222px;
+        height: 207px;
     }
 }
 
@@ -222,30 +271,26 @@ td {
     }
 }
 
-@-webkit-keyframes won {
+@-webkit-keyframes promptReset {
     0% {
-        width: 0%;
-        height: .5em;
-        border-radius: 50px;
-    }
-
-    49.999% {
-        border-radius: 50px;
+        height: 207px;
     }
 
     50% {
-        width: 100%;
         height: .5em;
-        border-radius: 0px;
     }
 
     100% {
-        height: 222px;
+        height: 207px;
     }
 }
 
-@-webkit-keyframes restart {
-    50% {
+@-webkit-keyframes red_ {
+    from {
         opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

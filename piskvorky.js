@@ -1,10 +1,3 @@
-/*
- * Tic Tac Toe
- *
- * A Tic Tac Toe game in HTML/JavaScript/CSS.
- *
- * @author: Vasanth Krishnamoorthy
- */
 var N_SIZE = 35,
   M_SIZE = 25,
   EMPTY = "&nbsp;",
@@ -16,10 +9,18 @@ var N_SIZE = 35,
   W_SIZE = 5,
   C_SIZE = 30,
   svastika = "<image src='pictures/svastika.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
-  srp = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + ">",
+  srp = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
   hitler = document.getElementById("hitler"),
   stalin = document.getElementById("stalin"),
-  won = document.getElementById('won');
+  prompt = document.getElementsByClassName('prompt'),
+  prompt = prompt[0],
+  startHitler = "<div id='gameStart' class='box'><p>Hitler has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameStart')\">Play</button></p></div>",
+  startStalin = "<div id='gameStart' class='box'><p>Stalin has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameStart')\">Play</button></p></div>",
+  wonHitler = "<div id='gameEnd' class='box'><p>HITLER WON THE WAR!!!<hr id='but'><button id='but' onclick='restartGame()'>Restart</button></p></div>",
+  wonStalin = "<div id='gameEnd' class='box'><p>STALIN WON THE WAR!!! <hr id='but'> <button id='but' onclick='restartGame()'>Restart</button></p></div>",
+  restartHitler = "<div id='gameRestart' class='box'><p>Hitler has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>",
+  restartStalin = "<div id='gameRestart' class='box'><p>Stalin has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>";
+
 
 function init() {
   var board = document.createElement('table');
@@ -49,14 +50,14 @@ function init() {
 
 
   document.getElementById("tictactoe").appendChild(board);
+  turn = randomStart();
+  if (turn == "X") {
+    prompt.innerHTML += startHitler;
+  } else prompt.innerHTML += startStalin;
   startNewGame();
 }
 
 function startNewGame() {
-  turn = randomStart();
-  if (turn == "X")
-    won.innerHTML = "<p class='start'>Hitler has won the coin toss. He begins!<hr id='but'><button id='but' onclick='startButton()'>Play</button></p>";
-  else won.innerHTML = "<p class='start'>Stalin has won the coin toss. He begins!<hr id='but'><button id='but' onclick='startButton()'>Play</button></p>";
   score = {
     "X": 0,
     "O": 0
@@ -69,23 +70,27 @@ function startNewGame() {
   pause = true;
 }
 
-/*
- * Check if a win or not
- */
 function win(clicked) {
   var memberOf = clicked.className.split(/\s+/);
   for (var i = 0; i < memberOf.length; i++) {
     var testClass = '.' + memberOf[i];
     var items = contains('#tictactoe ' + testClass, turn, clicked);
-    //console.log(items);
     if (items.length == W_SIZE) {
+      if (turn == "X") {
+        items.forEach(element => {
+          element.innerHTML += element.innerHTML.replace("svastika", "svastikaRed").replace("id=\"tah\"", "id = 'red'");
+        });
+      }
+      if (turn == "O") {
+        items.forEach(element => {
+          document.getElementById("tah").style.opacity = .9;
+          element.innerHTML += element.innerHTML.replace("srp", "srpRed").replace("id=\"tah\"", "id = 'red'");
+        });
+      }
       return true;
     }
   }
   return false;
-
-
-
 }
 
 function contains(selector, text, cell) {
@@ -96,7 +101,7 @@ function contains(selector, text, cell) {
   let x = parseInt(cell.className.split(/\s+/)[0].replace("c1_", " "));
   if (selector.includes("c1_")) {
     elem.forEach(element => {
-      let num = parseInt(element.className.split(/\s+/)[1].replace("row1_", " "));
+      let num = parseInt(element.className.split(/\s+/)[1].replace("r1_", " "));
       if (num == y || num == y + 1 || num == y + 2 || num == y + 3 || num == y + 4) {
         e.push(element)
       }
@@ -176,13 +181,6 @@ function contains(selector, text, cell) {
       }
     });
   }
-  // if (selector.includes("row1")) {
-  //   elem.forEach(element => {
-  //     let num = parseInt(element.className.split(/\s+/)[0].replace("xcol", " "));
-  //     if (num == x || num == x + 1 || num == x - 1 || num == x + 2 || num == x - 2 || num == x + 3 || num == x - 3 || num == x + 4 || num == x - 4) {
-  //       e.push(element);
-  //     }
-  //   });
 
   if (selector.includes("d1")) {
     elem.forEach(element => {
@@ -271,7 +269,6 @@ function contains(selector, text, cell) {
       let numY = parseInt(element.className.split(/\s+/)[0].replace("c1_", " "));
       if ((numX == y && numY == x) || (numX == y + 1 && numY == x - 1) || (numX == y + 2 && numY == x - 2) || (numX == y - 1 && numY == x + 1) || (numX == y - 2 && numY == x + 2)) {
         e.push(element);
-        console.log(element);
       }
     });
   }
@@ -282,10 +279,6 @@ function contains(selector, text, cell) {
   });
 }
 
-
-/*
- * Sets clicked square and also updates the turn.
- */
 function set() {
   if (pause == false) {
     turnImage(turn);
@@ -303,7 +296,7 @@ function set() {
       startNewGame();
     } else {
       turn = turn === "X" ? "O" : "X";
-      document.getElementById('turn').textContent = 'Player ' + turn;
+      //document.getElementById('turn').textContent = 'Player ' + turn;
     }
   }
 }
@@ -320,21 +313,18 @@ function image(cell, turn) {
 
 function victory(turn) {
   if (turn == "X") {
-    won.innerHTML = "<p>HITLER WON THE WAR!!!<hr id='but'><button id='but' onclick='restartGame()'>Restart</button></p>";
+    prompt.innerHTML = wonHitler;
     setTimeout(function () {
       //alert("HITLER WON THE WAR!!!");
     }, 10);
   }
   if (turn == "O") {
-    won.innerHTML = "<p>STALIN WON THE WAR!!! <hr id='but'> <button id='but' onclick='restartGame()'>Restart</button></p>";
+    prompt.innerHTML = wonStalin;
     setTimeout(function () {
       //alert("STALIN WON THE WAR!!!");
     }, 10);
   }
 
-  won.setAttribute("style", "width:" + N_SIZE * C_SIZE);
-  won.setAttribute("style", "min-width:" + N_SIZE * C_SIZE);
-  won.setAttribute("style", "padding:" + 20);
   pause = true;
 }
 
@@ -372,15 +362,17 @@ function randomStart() {
 
 }
 
-function startButton() {
+function startButton(prompt) {
   pause = false;
-  won.setAttribute("style", "padding:" + 0);
-  won.innerHTML = " ";
+  document.getElementById(prompt).parentElement.removeChild(document.getElementById(prompt));
 }
 
 function restartGame() {
-  won.classList.remove("restart");
-  won.classList.add("restart");
+  document.getElementById('gameEnd').parentElement.removeChild(document.getElementById('gameEnd'))
+  turn = randomStart();
+  if (turn == "X") {
+    prompt.innerHTML += restartHitler;
+  } else prompt.innerHTML += restartStalin;
   startNewGame();
 }
 
