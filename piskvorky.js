@@ -8,8 +8,8 @@ var N_SIZE = 35,
   pause = false,
   W_SIZE = 5,
   C_SIZE = 30,
-  svastika = "<image src='pictures/svastika.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
-  srp = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
+  nem = "<image src='pictures/nem.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
+  sssr = "<image src='pictures/sssr.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
   hitler = document.getElementById("hitler"),
   stalin = document.getElementById("stalin"),
   prompt = document.getElementsByClassName('prompt'),
@@ -78,13 +78,13 @@ function win(clicked) {
     if (items.length == W_SIZE) {
       if (turn == "X") {
         items.forEach(element => {
-          element.innerHTML += element.innerHTML.replace("svastika", "svastikaRed").replace("id=\"tah\"", "id = 'red'");
+          element.innerHTML += element.innerHTML.replace("nem", "nemRed").replace("id=\"tah\"", "id = 'red'");
         });
       }
       if (turn == "O") {
         items.forEach(element => {
           document.getElementById("tah").style.opacity = .9;
-          element.innerHTML += element.innerHTML.replace("srp", "srpRed").replace("id=\"tah\"", "id = 'red'");
+          element.innerHTML += element.innerHTML.replace("sssr", "sssrRed").replace("id=\"tah\"", "id = 'red'");
         });
       }
       return true;
@@ -303,11 +303,11 @@ function set() {
 
 function image(cell, turn) {
   if (turn == "X") {
-    cell.innerHTML = turn + svastika;
+    cell.innerHTML = turn + nem;
   }
 
   if (turn == "O") {
-    cell.innerHTML = turn + srp;
+    cell.innerHTML = turn + sssr;
   }
 }
 
