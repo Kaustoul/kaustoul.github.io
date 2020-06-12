@@ -19,7 +19,9 @@ var N_SIZE = 35,
   wonHitler = "<div id='gameEnd' class='box'><p>HITLER WON THE WAR!!!<hr id='but'><button id='but' onclick='restartGame()'>Restart</button></p></div>",
   wonStalin = "<div id='gameEnd' class='box'><p>STALIN WON THE WAR!!! <hr id='but'> <button id='but' onclick='restartGame()'>Restart</button></p></div>",
   restartHitler = "<div id='gameRestart' class='box'><p>Hitler has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>",
-  restartStalin = "<div id='gameRestart' class='box'><p>Stalin has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>";
+  restartStalin = "<div id='gameRestart' class='box'><p>Stalin has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>",
+  sm = true;
+
 
 
 function init() {
@@ -78,13 +80,21 @@ function win(clicked) {
     if (items.length == W_SIZE) {
       if (turn == "X") {
         items.forEach(element => {
-          element.innerHTML += element.innerHTML.replace("nem", "nemRed").replace("id=\"tah\"", "id = 'red'");
+          if (sm === true) {
+            element.innerHTML += element.innerHTML.replace("nem", "nemRed").replace("id=\"tah\"", "id = 'red'");
+          } else {
+            element.innerHTML += element.innerHTML.replace("svastika", "svastikaRed").replace("id=\"tah\"", "id = 'red'");
+          }
         });
       }
       if (turn == "O") {
         items.forEach(element => {
           document.getElementById("tah").style.opacity = .9;
-          element.innerHTML += element.innerHTML.replace("sssr", "sssrRed").replace("id=\"tah\"", "id = 'red'");
+          if (sm === true) {
+            element.innerHTML += element.innerHTML.replace("sssr", "sssrRed").replace("id=\"tah\"", "id = 'red'");
+          } else {
+            element.innerHTML += element.innerHTML.replace("srp", "srpRed").replace("id=\"tah\"", "id = 'red'");
+          }
         });
       }
       return true;
@@ -374,6 +384,24 @@ function restartGame() {
     prompt.innerHTML += restartHitler;
   } else prompt.innerHTML += restartStalin;
   startNewGame();
+}
+
+function safeMode() {
+  if (sm === true) {
+    document.getElementById("nem2").src = "pictures/svastika2.png";
+    document.getElementById("sssr2").src = "pictures/srp2.png";
+    nem = "<image src='pictures/svastika.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
+      sssr = "<image src='pictures/srp.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
+
+      sm = false;
+  } else {
+    document.getElementById("nem2").src = "pictures/nem2.png";
+    document.getElementById("sssr2").src = "pictures/sssr2.png";
+    nem = "<image src='pictures/nem.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
+      sssr = "<image src='pictures/sssr.png' height = " + (C_SIZE - 1) + " width = " + (C_SIZE - 1) + " id='tah'>",
+
+      sm = true;
+  }
 }
 
 init();
