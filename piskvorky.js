@@ -20,7 +20,7 @@ var N_SIZE = 35,
   wonStalin = "<div id='gameEnd' class='box'><p>STALIN WON THE WAR!!! <hr id='but'> <button id='but' onclick='restartGame()'>Restart</button></p></div>",
   restartHitler = "<div id='gameRestart' class='box'><p>Hitler has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>",
   restartStalin = "<div id='gameRestart' class='box'><p>Stalin has won the coin toss. He begins!<hr id='but'><button id='but' onclick=\"startButton('gameRestart')\">Play</button></p></div>",
-  sm = true;
+  sm = false;
 
 
 
